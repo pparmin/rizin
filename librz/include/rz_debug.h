@@ -386,12 +386,12 @@ typedef struct rz_debug_plugin_t {
 	RzList *(*kill_list)(RzDebug *dbg);
 	int (*contsc)(RzDebug *dbg, int pid, int sc);
 	RzList *(*frames)(RzDebug *dbg, ut64 at);
-	RzBreakpointCallback breakpoint;
+	RzBreakpointCallback breakpoint; /// Callback to be used for RzBreakpoint. When called, RzBreakpoint.user points to the RzDebug.
 	// XXX: specify, pid, tid, or RzDebug ?
 	int (*reg_read)(RzDebug *dbg, int type, ut8 *buf, int size);
 	int (*reg_write)(RzDebug *dbg, int type, const ut8 *buf, int size); //XXX struct rz_regset_t regs);
 	char *(*reg_profile)(RzDebug *dbg);
-	int (*set_reg_profile)(const char *str);
+	int (*set_reg_profile)(RzDebug *dbg, const char *str);
 	/* memory */
 	RzList *(*map_get)(RzDebug *dbg);
 	RzList *(*modules_get)(RzDebug *dbg);

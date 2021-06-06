@@ -85,7 +85,7 @@ RZ_API bool rz_debug_plugin_set_reg_profile(RzDebug *dbg, const char *profile) {
 		return false;
 	}
 	if (dbg && dbg->cur && dbg->cur->set_reg_profile) {
-		return dbg->cur->set_reg_profile(str);
+		return dbg->cur->set_reg_profile(dbg, str);
 	}
 	free(str);
 	return false;
